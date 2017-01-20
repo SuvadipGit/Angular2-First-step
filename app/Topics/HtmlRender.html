@@ -1,0 +1,53 @@
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h2>Html Rendering</h2>
+<p>Example of ngif and ngFor</p>
+<div  *ngIf="courses.length >0">
+	<ul>
+		<li></li>
+	</ul>
+</div>
+<div *ngIf="courses.length == 0">
+	<p>No Courses Available</p>
+</div>
+
+<div  [hidden]="topics.length ==0">
+	<ul>
+		<li *ngFor="let topic of topics,let i=index">{{i+1}}-{{topic}}</li>
+	</ul>
+</div>
+<div [hidden]="topics.length > 0">
+	<p>No topic Available</p>
+</div>
+
+<p>Clcik on any of the menu and see the content changing, done by ngswitch</p>
+<ul class="nav nav-pills">
+	<li [class.active]="viewMode =='map'"> <a (click)="this.viewMode ='map'"
+	 	>map view</a></li>
+	<li [class.active]="viewMode =='list'"> <a (click)="this.viewMode ='list'" 
+		>list view</a></li>
+</ul>
+<div [ngSwitch]="this.viewMode">
+	<div *ngSwitchDefault>view map content</div>
+	<div *ngSwitchCase ="'list'">view list content</div>	
+</div>
+<h2>Pipes</h2>
+<h1><strong>Use of Default Pipe</strong></h1>
+<div>
+	<p>{{pipetest.title | uppercase}}</p>
+	<p>{{pipetest.number | number}}</p>
+	<p>{{pipetest.currency | currency:'USD':true}}</p>
+	<p>{{pipetest.decimal | number:'2.2-2'}}</p>
+	<p>{{pipetest.dateval | date: 'MMM yyyy'}}</p>
+	<p>{{pipetest | json}}</p>
+</div>
+<h1>Use of Custom Pipe, below text is truncated dynamically</h1>
+<p>{{customPipeText | summary :20}}</p>
+</body>
